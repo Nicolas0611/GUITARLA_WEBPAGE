@@ -1,0 +1,1 @@
+export const GET_BLOG_ENTRIES = "GET_BLOG_ENTRIES";
