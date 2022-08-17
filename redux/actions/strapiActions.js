@@ -15,7 +15,6 @@ export const getBlogs = (type, setState) => {
         if (type === "get") {
           blogs = responseData;
           dispatch(getBlogEntries(blogs));
-          console.log(blogs);
         }
       })
       .catch(() => {

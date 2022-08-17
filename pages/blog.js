@@ -1,15 +1,21 @@
 import Layout from "../components/Layout";
 import { useEffect } from "react";
 import { useBlogServices } from "../hooks/useBlogServices";
+import Entrada from "../components/Entrada";
+import styles from "../styles/Blog.module.css";
+import { dataMapping } from "../helpers/dataMapping";
 const Blog = () => {
-  const { blogs, isChanging, startGettingBlogs } = useBlogServices();
+  const { isChanging, blogs, startGettingBlogs } = useBlogServices();
   useEffect(() => {
     startGettingBlogs();
   }, [isChanging]);
 
   return (
     <Layout title="Blog">
-      <h1 className="heading"> Desde blog </h1>
+      <main className="contenedor">
+        <h1 className="heading"> Blog </h1>
+        <div className={styles.blog}>{dataMapping(blogs, "blogs")}</div>
+      </main>
     </Layout>
   );
 };
