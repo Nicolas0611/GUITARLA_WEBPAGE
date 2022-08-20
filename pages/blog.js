@@ -1,13 +1,12 @@
 import Layout from "../components/Layout";
 import { useEffect } from "react";
 import { useBlogServices } from "../hooks/useBlogServices";
-import Entrada from "../components/Entrada";
 import styles from "../styles/Blog.module.css";
 import { dataMapping } from "../helpers/dataMapping";
 const Blog = () => {
   const { isChanging, blogs, startGettingBlogs } = useBlogServices();
   useEffect(() => {
-    startGettingBlogs();
+    startGettingBlogs("GET");
   }, [isChanging]);
 
   return (

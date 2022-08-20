@@ -1,8 +1,9 @@
-import { GET_BLOG_ENTRIES } from "../types/strapiTypes";
+import { GET_BLOG_ENTRIES, GET_BLOG_ID } from "../types/strapiTypes";
 import { IS_LOADING_STATE } from "../types/stateTypes";
 const initialState = {
   data: [],
   isChanging: false,
+  singleBlog: [],
 };
 
 export const strapiAPI = (state = initialState, action) => {
@@ -11,6 +12,11 @@ export const strapiAPI = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case GET_BLOG_ID:
+      return {
+        ...state,
+        singleBlog: action.payload,
       };
     case IS_LOADING_STATE:
       return {

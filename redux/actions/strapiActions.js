@@ -1,20 +1,27 @@
 import axios from "axios";
-import { GET_BLOG_ENTRIES } from "../types/strapiTypes";
-
+import { urlsLib } from "../../lib/urlsLib";
+import { GET_BLOG_ENTRIES, GET_BLOG_ID } from "../types/strapiTypes";
 let blogs = [];
-export const getBlogs = (type, setState) => {
+
+export const getBlogs = (type, id = " ") => {
   return async (dispatch) => {
-    let url = null;
-    if (type === "get") {
-      url = "http://localhost:1337/blogs";
-    }
+    let url;
+    url = urlsLib(type, id);
     await axios
       .get(url)
       .then((response) => {
         const responseData = response.data;
-        if (type === "get") {
-          blogs = responseData;
-          dispatch(getBlogEntries(blogs));
+        blogs = responseData;
+        switch (type) {
+          case "GET":
+            dispatch(getBlogEntries(blogs));
+            break;
+          case "GET_ID":
+            dispatch(getBlogEntry(blogs));
+            break;
+
+          default:
+            break;
         }
       })
       .catch(() => {
@@ -27,6 +34,15 @@ export const getBlogEntries = (blogs) => {
     dispatch({
       type: GET_BLOG_ENTRIES,
       payload: blogs,
+    });
+  };
+};
+
+export const getBlogEntry = (blog) => {
+  return (dispatch) => {
+    dispatch({
+      type: GET_BLOG_ID,
+      payload: blog,
     });
   };
 };
