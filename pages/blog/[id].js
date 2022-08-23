@@ -4,23 +4,25 @@ import { useBlogServices } from "../../hooks/useBlogServices";
 import { dateReset } from "../../helpers/dateReset";
 import { useEffect } from "react";
 import Image from "next/image";
+import styles from "../../styles/Entrada.module.css";
 
 const EntradaBlog = () => {
   const router = useRouter();
 
   const { singleBlog, startGettingBlogs } = useBlogServices();
+  const { titulo, imagen, published_at, contenido } = singleBlog;
   useEffect(() => {
     console.log(router.query.id);
     if (router.query.id !== undefined) {
       startGettingBlogs("GET_ID", router.query.id);
     }
   }, [router.query.id]);
-  const { titulo, imagen, published_at, contenido } = singleBlog;
+
   return (
     <Layout title="Bloger">
       <main className="contenedor">
         <h1 className="heading"> {titulo} </h1>
-        <article>
+        <article className={styles.entrada}>
           {imagen ? (
             <>
               <Image
@@ -30,10 +32,10 @@ const EntradaBlog = () => {
                 src={imagen.url}
                 alt={`Imagen entrada ${titulo}`}
               />
-              <div>
+              <div className={styles.contenido}>
                 {" "}
-                <p>{dateReset(published_at)}</p>
-                <p> {contenido}</p>
+                <p className={styles.fecha}>{dateReset(published_at)}</p>
+                <p className={styles.texto}> {contenido}</p>
               </div>
             </>
           ) : (
