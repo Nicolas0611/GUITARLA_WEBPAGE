@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { dateReset } from "../helpers/dateReset";
 import styles from "../styles/Entrada.module.css";
-const Entrada = ({ title, resume, content, image, published, id }) => {
+const Entrada = ({ title, resume, image, published, id }) => {
   return (
     <article>
       <Image
