@@ -8,7 +8,7 @@ const Tienda = () => {
   useEffect(() => {
     startGettingBlogs("GET_SHOP");
   }, []);
-
+  console.log(items);
   return (
     <Layout title="Tienda Virtual">
       <main className="contenedor">

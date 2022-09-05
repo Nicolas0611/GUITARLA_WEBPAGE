@@ -20,6 +20,12 @@ export const useBlogServices = () => {
       case "GET_SHOP":
         dispatch(getBlogs("guitarras", "GET_SHOP"));
         break;
+      case "GET_SHOP_ID":
+        dispatch(getBlogs("guitarras", "GET_ID", id));
+        break;
+      case "GET_INDEX":
+        dispatch(getBlogs("cursos", "GET_INDEX"));
+        break;
       default:
         break;
     }

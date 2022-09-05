@@ -1,7 +1,8 @@
 import {
   GET_BLOG_ENTRIES,
-  GET_BLOG_ID,
+  GET_ID,
   GET_SHOP_ITEMS,
+  GET_INDEX,
 } from "../types/strapiTypes";
 import { IS_LOADING_STATE } from "../types/stateTypes";
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
   isChanging: false,
   items: [],
   singleBlog: [],
+  content: [],
 };
 
 export const strapiAPI = (state = initialState, action) => {
@@ -18,7 +20,7 @@ export const strapiAPI = (state = initialState, action) => {
         ...state,
         data: action.payload,
       };
-    case GET_BLOG_ID:
+    case GET_ID:
       return {
         ...state,
         singleBlog: action.payload,
@@ -27,6 +29,11 @@ export const strapiAPI = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+      };
+    case GET_INDEX:
+      return {
+        ...state,
+        content: action.payload,
       };
     case IS_LOADING_STATE:
       return {
