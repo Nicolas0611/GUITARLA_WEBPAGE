@@ -4,6 +4,7 @@
   padding: 5rem 0;
   background-position: 50%;
   background-size: cover;
+  position: relative;
 }
 .barra {
   display: flex;
@@ -34,7 +35,55 @@
   font-weight: 700;
   text-transform: uppercase;
   padding: 0.5rem;
+  z-index: 1;
 }
 .navegacion a:hover {
   background-color: var(--primary);
+}
+.modelo {
+  color: var(--blanco);
+  margin-top: 5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .modelo {
+    text-align: left;
+    width: 50%;
+  }
+}
+.enlace {
+  margin-top: 2rem;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: white;
+  border: 2px solid var(--primary);
+  padding: 1rem 5rem;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.enlace:hover {
+  background-color: var(--primary);
+  color: var(--blanco);
+}
+.precio {
+  font-size: 6rem;
+  color: var(--primary);
+  font-weight: 900;
+  line-height: 0;
+}
+.guitarra {
+  display: none;
+  z-index: 0;
+}
+@media (min-width: 992px) {
+  .guitarra {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+  }
 }

@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       {isChanging === false && guitarra !== undefined ? (
-        <Layout title="Nosotros" guitarra={guitarra[1]}>
+        <Layout title="Nosotros" guitarra={guitarra[3]}>
           <main className="contenedor">
             <h1 className="heading"> Nuestra Coleccion </h1>
 
