@@ -39,19 +39,22 @@ export const getBlogs = (category, type, id = " ") => {
       });
   };
 };
-export const getIndexReq = () => {
+export const getIndexReq = (data) => {
   return async (dispatch) => {
     let endpoints = [
       `${process.env.NEXT_PUBLIC_API_URL}/guitarras`,
       `${process.env.NEXT_PUBLIC_API_URL}/cursos`,
+      `${process.env.NEXT_PUBLIC_API_URL}/blogs?_limit=${data}`,
     ];
 
     await axios
       .all(endpoints.map((endpoint) => axios.get(endpoint)))
       .then(
-        axios.spread(({ data: guitarra }, { data: cursos }) => {
-          dispatch(getIndexContent({ guitarra, cursos }));
-        })
+        axios.spread(
+          ({ data: guitarra }, { data: cursos }, { data: blogs }) => {
+            dispatch(getIndexContent({ guitarra, cursos, blogs }));
+          }
+        )
       )
       .catch(() => {
         console.log("Error Data");

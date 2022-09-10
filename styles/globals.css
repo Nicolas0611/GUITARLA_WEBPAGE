@@ -1,14 +1,16 @@
 :root {
   --primary: #e99401;
   --negro: #262626;
-  --blanco: #FFF;
-  --fuente-principal: 'Outfit', sans-serif;
+  --blanco: #fff;
+  --fuente-principal: "Outfit", sans-serif;
 }
 html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 body {
@@ -31,4 +33,19 @@ img {
   font-weight: 900;
   color: var(--primary);
   margin: 5rem 0;
+}
+.blog {
+  display: grid;
+  gap: 4rem;
+}
+@media (min-width: 768px) {
+  .blog {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .blog {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

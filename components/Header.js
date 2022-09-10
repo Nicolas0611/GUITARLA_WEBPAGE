@@ -5,7 +5,7 @@ import styles from "../styles/Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const Header = () => {
+const Header = ({ guitarra }) => {
   return (
     <header className={styles.header}>
       <div className="contenedor">
@@ -21,6 +21,17 @@ const Header = () => {
             {dataMapping(dataHeader, "link")}
           </nav>
         </div>
+
+        {guitarra && (
+          <div>
+            <h1>Modelo {guitarra.nombre}</h1>
+            <p> {guitarra.descripcion}</p>
+            <p> ${guitarra.precio}</p>
+            <Link href={`/guitarras/${guitarra.id}`}>
+              <a>Ver Producto</a>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
