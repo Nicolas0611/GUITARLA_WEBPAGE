@@ -3,18 +3,42 @@ import Image from "next/image";
 import styles from "../../styles/Guitarra.module.css";
 import { useRouter } from "next/router";
 import { useBlogServices } from "../../hooks/useBlogServices";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { addItemsCar } from "../../redux/actions/strapiActions";
 
 const EntradaGuitarra = () => {
   const router = useRouter();
-  const { singleBlog, startGettingBlogs } = useBlogServices();
+  const dispatch = useDispatch();
+
+  const { singleBlog, itemCar, startGettingBlogs, getQuantity } =
+    useBlogServices();
+  const { id, nombre, descripcion, imagen, precio } = singleBlog;
+
   useEffect(() => {
-    console.log(singleBlog);
     if (router.query.id !== undefined) {
       startGettingBlogs("GET_SHOP_ID", router.query.id);
     }
   }, [router.query.id]);
-  const { nombre, descripcion, imagen, precio } = singleBlog;
+
+  const handleDropdownChange = (e) => {
+    e.preventDefault();
+    getQuantity(e.target.value);
+  };
+
+  const handleSubmitBtn = (e) => {
+    e.preventDefault();
+    if (itemCar > 0) {
+      const guitarSelected = {
+        id,
+        imagen: imagen.url,
+        nombre,
+        precio,
+        itemCar,
+      };
+      dispatch(addItemsCar(guitarSelected));
+    }
+  };
   return (
     <Layout title={nombre}>
       <div className={styles.guitarra}>
@@ -32,7 +56,13 @@ const EntradaGuitarra = () => {
               <p className={styles.descripcion}>{descripcion}</p>
               <p className={styles.precio}>${precio}</p>
 
-              <form className={styles.formulario}>
+              <form
+                className={styles.formulario}
+                onChange={(e) => {
+                  handleDropdownChange(e);
+                }}
+                onSubmit={handleSubmitBtn}
+              >
                 <label>Cantidad:</label>
                 <select>
                   <option value="">--Seleccione--</option>

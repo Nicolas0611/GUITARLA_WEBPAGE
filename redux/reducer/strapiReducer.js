@@ -3,6 +3,8 @@ import {
   GET_ID,
   GET_SHOP_ITEMS,
   GET_INDEX,
+  GET_QUANTITY,
+  ADD_ITEMS,
 } from "../types/strapiTypes";
 import { IS_LOADING_STATE } from "../types/stateTypes";
 const initialState = {
@@ -11,6 +13,8 @@ const initialState = {
   items: [],
   singleBlog: [],
   content: [],
+  amount: 0,
+  shoppingCar: [],
 };
 
 export const strapiAPI = (state = initialState, action) => {
@@ -39,6 +43,16 @@ export const strapiAPI = (state = initialState, action) => {
       return {
         ...state,
         isChanging: action.payload,
+      };
+    case GET_QUANTITY:
+      return {
+        ...state,
+        amount: action.payload,
+      };
+    case ADD_ITEMS:
+      return {
+        ...state,
+        shoppingCar: action.payload,
       };
     default:
       return state;

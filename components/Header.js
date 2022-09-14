@@ -22,6 +22,17 @@ const Header = ({ guitarra }) => {
 
           <nav className={styles.navegacion}>
             {dataMapping(dataHeader, "link")}
+            <Link href="/carrito">
+              <a>
+                <Image
+                  layout="fixed"
+                  width={30}
+                  height={25}
+                  src="/img/carrito.png"
+                  alt="Imagen carrito"
+                />
+              </a>
+            </Link>
           </nav>
         </div>
 

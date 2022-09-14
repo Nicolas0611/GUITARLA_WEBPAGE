@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getBlogs } from "../redux/actions/strapiActions";
+import { getAmount, getBlogs } from "../redux/actions/strapiActions";
 import { isLoadingState } from "../redux/actions/generalActions";
 
 export const useBlogServices = () => {
   const dispatch = useDispatch();
   const blogs = useSelector((state) => state.data);
+  const itemCar = useSelector((state) => state.amount);
   const items = useSelector((state) => state.items);
   const singleBlog = useSelector((state) => state.singleBlog);
   const isChanging = useSelector((state) => state.isChanging);
@@ -35,14 +36,20 @@ export const useBlogServices = () => {
     dispatch(isLoadingState(true));
   };
 
+  const getQuantity = (count) => {
+    dispatch(getAmount(count));
+  };
+
   return {
     //Properties
     blogs,
     isChanging,
     singleBlog,
     items,
+    itemCar,
     //Methods
     startGettingBlogs,
     changingState,
+    getQuantity,
   };
 };

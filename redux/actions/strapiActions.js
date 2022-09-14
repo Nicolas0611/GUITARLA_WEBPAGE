@@ -5,9 +5,13 @@ import {
   GET_ID,
   GET_SHOP_ITEMS,
   GET_INDEX,
+  GET_QUANTITY,
+  ADD_ITEMS,
 } from "../types/strapiTypes";
 import { isLoadingState } from "./generalActions";
+
 let items = [];
+let shoppingList = [];
 
 export const getBlogs = (category, type, id = " ") => {
   return async (dispatch) => {
@@ -90,6 +94,32 @@ export const getIndexContent = (content) => {
     dispatch({
       type: GET_INDEX,
       payload: content,
+    });
+  };
+};
+export const getAmount = (amount) => {
+  let count;
+  if (typeof amount === "string") {
+    count = Number(amount);
+  }
+  return (dispatch) => {
+    dispatch({
+      type: GET_QUANTITY,
+      payload: count,
+    });
+  };
+};
+export const addItemsCar = (item) => {
+  if (shoppingList.some((shopItem) => shopItem.id === item.id)) {
+    console.log("ptoducto duplicado");
+  } else {
+    shoppingList.push(item);
+  }
+
+  return (dispatch) => {
+    dispatch({
+      type: ADD_ITEMS,
+      payload: shoppingList,
     });
   };
 };
