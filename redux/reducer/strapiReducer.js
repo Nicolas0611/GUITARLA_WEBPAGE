@@ -5,8 +5,9 @@ import {
   GET_INDEX,
   GET_QUANTITY,
   ADD_ITEMS,
+  UPDATE_COUNT,
 } from "../types/strapiTypes";
-import { IS_LOADING_STATE } from "../types/stateTypes";
+import { IS_LOADING_STATE, UI_MSG_FEEDBACK } from "../types/stateTypes";
 const initialState = {
   data: [],
   isChanging: false,
@@ -15,6 +16,7 @@ const initialState = {
   content: [],
   amount: 0,
   shoppingCar: [],
+  msg: "",
 };
 
 export const strapiAPI = (state = initialState, action) => {
@@ -50,6 +52,16 @@ export const strapiAPI = (state = initialState, action) => {
         amount: action.payload,
       };
     case ADD_ITEMS:
+      return {
+        ...state,
+        shoppingCar: action.payload,
+      };
+    case UI_MSG_FEEDBACK:
+      return {
+        ...state,
+        msg: action.payload,
+      };
+    case UPDATE_COUNT:
       return {
         ...state,
         shoppingCar: action.payload,

@@ -7,8 +7,9 @@ import {
   GET_INDEX,
   GET_QUANTITY,
   ADD_ITEMS,
+  UPDATE_COUNT,
 } from "../types/strapiTypes";
-import { isLoadingState } from "./generalActions";
+import { msgError } from "./generalActions";
 
 let items = [];
 let shoppingList = [];
@@ -110,15 +111,22 @@ export const getAmount = (amount) => {
   };
 };
 export const addItemsCar = (item) => {
-  if (shoppingList.some((shopItem) => shopItem.id === item.id)) {
-    console.log("ptoducto duplicado");
-  } else {
-    shoppingList.push(item);
-  }
-
+  return (dispatch) => {
+    if (shoppingList.some((shopItem) => shopItem.id === item.id)) {
+      dispatch(msgError("producto duplicado"));
+    } else {
+      shoppingList.push(item);
+      dispatch({
+        type: ADD_ITEMS,
+        payload: shoppingList,
+      });
+    }
+  };
+};
+export const updateItemsCount = (shoppingList) => {
   return (dispatch) => {
     dispatch({
-      type: ADD_ITEMS,
+      type: UPDATE_COUNT,
       payload: shoppingList,
     });
   };
