@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Entrada from "../components/Entrada";
-export const dataMapping = (data, label) => {
+export const dataMapping = (data, label, cantidad) => {
   let components = null;
 
   switch (label) {
