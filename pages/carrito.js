@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { updateItemsCount } from "../redux/actions/strapiActions";
 import Image from "next/image";
 import { optionsDropdown } from "../lib/headerLib";
+import { totalCounter } from "../helpers/totalCounter";
 
 const carrito = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.shoppingCar);
+
   const updateQuantity = (product) => {
     const updatedCar = items.map((article) => {
       if (article.id === product.id) {
@@ -28,14 +30,16 @@ const carrito = () => {
     });
   };
   const deleteProduct = (id) => {
-    const shoppingCar = items.filter((item) => item.id !== id);
-    dispatch(updateItemsCount(shoppingCar));
+    const shoppingItems = items.filter((item) => item.id !== id);
+    dispatch(updateItemsCount(shoppingItems));
   };
+
   return (
     <Layout title={"Carrito de compras"}>
       <h1 className="heading"> Carrito</h1>
       <main className={`${styles.contenido} contenedor`}>
         <div className={styles.carrito}>
+          <h2>Articulos</h2>
           {items.length === 0
             ? "Carrito vacio"
             : items.map((producto) => (
@@ -88,7 +92,14 @@ const carrito = () => {
                 </div>
               ))}
         </div>
-        <div>2</div>
+        <div className={styles.resumen}>
+          <h3>Resumen del pedido</h3>
+          {totalCounter(items) === 0 ? (
+            <p> No hay items en tu carrito</p>
+          ) : (
+            <p>El precio total es {totalCounter(items)}</p>
+          )}
+        </div>
       </main>
     </Layout>
   );
