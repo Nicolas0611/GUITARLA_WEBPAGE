@@ -27,6 +27,10 @@ const carrito = () => {
       id: producto.id,
     });
   };
+  const deleteProduct = (id) => {
+    const shoppingCar = items.filter((item) => item.id !== id);
+    dispatch(updateItemsCount(shoppingCar));
+  };
   return (
     <Layout title={"Carrito de compras"}>
       <h1 className="heading"> Carrito</h1>
@@ -72,6 +76,15 @@ const carrito = () => {
                       <span>${producto.precio * producto.itemCar}</span>
                     </p>
                   </div>
+                  <button
+                    onClick={() => {
+                      deleteProduct(producto.id);
+                    }}
+                    type="button"
+                    className={styles.eliminar}
+                  >
+                    X
+                  </button>
                 </div>
               ))}
         </div>
