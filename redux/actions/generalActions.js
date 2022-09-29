@@ -1,4 +1,8 @@
-import { IS_LOADING_STATE, UI_MSG_FEEDBACK } from "../types/stateTypes";
+import {
+  CLEAR_DATA,
+  IS_LOADING_STATE,
+  UI_MSG_FEEDBACK,
+} from "../types/stateTypes";
 
 export const isLoadingState = (state) => {
   return (dispatch) => {
@@ -14,6 +18,13 @@ export const msgError = (msg) => {
     dispatch({
       type: UI_MSG_FEEDBACK,
       payload: msg,
+    });
+  };
+};
+export const clearData = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_DATA,
     });
   };
 };

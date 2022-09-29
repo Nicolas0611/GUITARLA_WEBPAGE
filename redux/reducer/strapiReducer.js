@@ -7,7 +7,11 @@ import {
   ADD_ITEMS,
   UPDATE_COUNT,
 } from "../types/strapiTypes";
-import { IS_LOADING_STATE, UI_MSG_FEEDBACK } from "../types/stateTypes";
+import {
+  CLEAR_DATA,
+  IS_LOADING_STATE,
+  UI_MSG_FEEDBACK,
+} from "../types/stateTypes";
 const initialState = {
   data: [],
   isChanging: false,
@@ -65,6 +69,11 @@ export const strapiAPI = (state = initialState, action) => {
       return {
         ...state,
         shoppingCar: action.payload,
+      };
+    case CLEAR_DATA:
+      return {
+        ...state,
+        singleBlog: [],
       };
     default:
       return state;

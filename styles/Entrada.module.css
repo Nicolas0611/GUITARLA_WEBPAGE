@@ -46,3 +46,17 @@
 .texto {
   white-space: pre-wrap;
 }
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.buttonBack {
+  width: 50px;
+  height: 50px;
+  padding-right: 10px;
+
+  padding-top: 1.5rem;
+}

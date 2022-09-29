@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { dateReset } from "../helpers/dateReset";
 import styles from "../styles/Entrada.module.css";
+import { useDispatch } from "react-redux";
 const Entrada = ({ title, resume, image, published, id }) => {
   return (
     <article>
@@ -16,7 +17,7 @@ const Entrada = ({ title, resume, image, published, id }) => {
       />
       <div className={styles.contenido}>
         <h1 className={styles.fecha}> {title} </h1>
-        <p>{dateReset(published)} </p>
+        <p className={styles.fecha}>{dateReset(published)} </p>
         <p> {resume}</p>
         <Link href={`/blog/${id}`}>
           <a className={styles.enlace}>Leer Entrada </a>
