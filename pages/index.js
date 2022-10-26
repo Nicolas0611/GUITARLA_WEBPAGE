@@ -9,15 +9,16 @@ import styles from "../styles/Curso.module.css";
 import { dataMapping } from "../helpers/dataMapping";
 
 export default function Home() {
-  const isChanging = useSelector((state) => state.isChanging);
-  const [quantity, setQuantity] = useState(3);
-  useEffect(() => {
-    dispatch(getIndexReq(quantity));
-  }, [quantity]);
-
   const dispatch = useDispatch();
+  const isChanging = useSelector((state) => state.isChanging);
   const indexContent = useSelector((state) => state.content);
   const { guitarra, cursos, blogs } = indexContent;
+  const [quantity, setQuantity] = useState(3);
+  useEffect(() => {
+    if (indexContent.length === 0 || quantity > 3) {
+      dispatch(getIndexReq(quantity));
+    }
+  }, [quantity]);
 
   const moreEntries = () => {
     setQuantity(quantity + 1);

@@ -1,2 +1,3 @@
 export const IS_LOADING_STATE = "IS_LOADING_STATE";
 export const UI_MSG_FEEDBACK = "UI_MSG_FEEDBACK";
+export const CLEAR_DATA = "CLEAR_DATA";

@@ -15,9 +15,9 @@ let items = [];
 let shoppingList = [];
 
 export const getBlogs = (category, type, id = " ") => {
+  let url;
+  url = urlsLib(category, type, id);
   return async (dispatch) => {
-    let url;
-    url = urlsLib(category, type, id);
     await axios
       .get(url)
       .then((response) => {
@@ -45,13 +45,12 @@ export const getBlogs = (category, type, id = " ") => {
   };
 };
 export const getIndexReq = (data) => {
+  let endpoints = [
+    `${process.env.NEXT_PUBLIC_API_URL}/guitarras`,
+    `${process.env.NEXT_PUBLIC_API_URL}/cursos`,
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?_limit=${data}`,
+  ];
   return async (dispatch) => {
-    let endpoints = [
-      `${process.env.NEXT_PUBLIC_API_URL}/guitarras`,
-      `${process.env.NEXT_PUBLIC_API_URL}/cursos`,
-      `${process.env.NEXT_PUBLIC_API_URL}/blogs?_limit=${data}`,
-    ];
-
     await axios
       .all(endpoints.map((endpoint) => axios.get(endpoint)))
       .then(

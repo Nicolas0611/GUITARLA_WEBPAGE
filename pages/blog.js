@@ -3,11 +3,17 @@ import { useEffect } from "react";
 import { useBlogServices } from "../hooks/useBlogServices";
 import styles from "../styles/Blog.module.css";
 import { dataMapping } from "../helpers/dataMapping";
+import { useRouter } from "next/router";
+
 const Blog = () => {
-  const { isChanging, blogs, startGettingBlogs } = useBlogServices();
+  const { blogs, startGettingBlogs } = useBlogServices();
+  const router = useRouter();
   useEffect(() => {
-    startGettingBlogs("GET");
-  }, [isChanging]);
+    console.log(router);
+    if (blogs.length === 0) {
+      startGettingBlogs("GET");
+    }
+  }, []);
 
   return (
     <Layout title="Blog">
